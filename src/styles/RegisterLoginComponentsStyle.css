@@ -22,11 +22,11 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    justify-items: center;
     align-items: center;
     position: fixed;
     top: 80px;
     background-color: rgb(9, 63, 2);
+    flex-wrap: wrap;
 }
 
 .form {
@@ -58,7 +58,7 @@
     cursor: pointer;
 }
 
-.errorMessage {
+.inputMessage {
     position: absolute;
     top: 0;
     color: red;
@@ -71,4 +71,22 @@
     justify-content: center;
     position: relative;
     margin-top: 20px;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 50px;
+    width: 100%;
+    position: fixed;
+    top: 100px;
+    text-align: center;
+}
+
+.message {
+    color: white;
+    font-size: 50px;
+    width: 100%;
+    position: fixed;
+    top: 100px;
+    text-align: center;
 }

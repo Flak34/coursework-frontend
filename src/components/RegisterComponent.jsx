@@ -157,15 +157,15 @@ export default class RegisterComponent extends Component {
   render() {
     return (
 
-      <div>
+      <div className="form-container">
 
         {!this.state.successful && (
-          <div className="form-container">
+          
           <form className="form">
             <h1>Регистрация</h1>
 
             <div className="input-container">
-              {(this.state.usernameDirty && this.state.usernameError) && <div className="errorMessage">{this.state.usernameError}</div>}
+              {(this.state.usernameDirty && this.state.usernameError) && <div className="inputMessage">{this.state.usernameError}</div>}
               <input onChange={this.onChangeUsername}
                 onBlur={this.blurHandler} 
                 value={this.state.username} 
@@ -177,7 +177,7 @@ export default class RegisterComponent extends Component {
 
 
             <div className="input-container">
-              {(this.state.emailDirty && this.state.emailError) && <div className="errorMessage">{this.state.emailError}</div>}
+              {(this.state.emailDirty && this.state.emailError) && <div className="inputMessage">{this.state.emailError}</div>}
               <input onChange={this.onChangeEmail} 
                 onBlur={this.blurHandler}
                 value={this.state.email} 
@@ -189,7 +189,7 @@ export default class RegisterComponent extends Component {
             
 
             <div className="input-container">
-              {(this.state.passwordDirty && this.state.passwordError) && <div className="errorMessage">{this.state.passwordError}</div>}
+              {(this.state.passwordDirty && this.state.passwordError) && <div className="inputMessage">{this.state.passwordError}</div>}
               <input onChange={this.onChangePassword}
                 onBlur={this.blurHandler} 
                 value={this.state.password} 
@@ -200,13 +200,13 @@ export default class RegisterComponent extends Component {
             </div>
             <button onClick={this.handleRegister} className="submit-button" type="submit">Sign Up</button>
           </form>
-        </div>
+        
 
 
         )}
 
         {this.state.message && (
-          <div>
+          <div className={(this.state.successful ? ('message'): ('errorMessage'))} >
             {this.state.message}
           </div>
         )}
