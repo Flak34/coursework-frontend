@@ -11,6 +11,7 @@ import Home from "./components/HomeComponent";
 import Profile from "./components/ProfileComponent";
 
 import EventBus from "./common/EventBus.js";
+import HeaderComponent from "./components/HeaderComponent";
 
 class App extends Component {
   constructor(props) {
@@ -53,56 +54,11 @@ class App extends Component {
     return (
       <BrowserRouter>
       <div>
-        <div>Hello from react Applacatiion tio user!!!!!!!</div>
-        <nav>
-          <Link to={"/"}>
-            bezKoder
-          </Link>
-          <div>
-            <li>
-              <Link to={"/home"}>
-                Home
-              </Link>
-            </li>
 
-            {currentUser && (
-              <li>
-                <Link to={"/user"}>
-                  User
-                </Link>
-              </li>
-            )}
-          </div>
-
-          {currentUser ? (
-            <div>
-              <li>
-                <Link to={"/profile"}>
-                  {currentUser.username}
-                </Link>
-              </li>
-              <li>
-                <a href="/login" onClick={this.logOut}>
-                  LogOut
-                </a>
-              </li>
-            </div>
-          ) : (
-            <div>
-              <li>
-                <Link to={"/login"}>
-                  Login
-                </Link>
-              </li>
-
-              <li>
-                <Link to={"/register"}>
-                  Sign Up
-                </Link>
-              </li>
-            </div>
-          )}
-        </nav>
+        <HeaderComponent currentUser={this.state.currentUser} logOut={this.logOut}>
+        </HeaderComponent>
+        
+      
 
         <div>
           <Routes>
