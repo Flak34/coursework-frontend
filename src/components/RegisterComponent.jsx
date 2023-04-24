@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import AuthService from "../services/auth-service";
-import "../styles/RegisterComponentStyle.css"
+import "../styles/RegisterLoginComponentsStyle.css"
 
 
 export default class RegisterComponent extends Component {
@@ -63,7 +63,7 @@ export default class RegisterComponent extends Component {
     }
     else if(e.target.value.length == 0) {
       this.setState({
-        usernameError: "Пароль не может быть пустым"
+        usernameError: "Логин не может быть пустым"
       });
     }
     else {
@@ -120,10 +120,9 @@ export default class RegisterComponent extends Component {
 
   }
 
+
   handleRegister(e) {
     e.preventDefault();
-
-
     if (!this.state.emailError && !this.state.passwordError && !this.state.usernameError) {
       AuthService.register(
         this.state.username,
@@ -153,6 +152,7 @@ export default class RegisterComponent extends Component {
 
     
   }
+
 
   render() {
     return (
@@ -210,20 +210,7 @@ export default class RegisterComponent extends Component {
             {this.state.message}
           </div>
         )}
-
-
-        
-
-
       </div>
-
-
-        
-      
-      
-      
-
-      
     );
   }
 }
