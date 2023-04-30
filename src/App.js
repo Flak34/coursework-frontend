@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import { BrowserRouter } from 'react-router-dom'
 import "./App.css";
 
@@ -9,9 +9,11 @@ import Login from "./components/LoginComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import Home from "./components/HomeComponent";
 import Profile from "./components/ProfileComponent";
-
-import EventBus from "./common/EventBus.js";
+import Protected from "./common/Protected";
 import HeaderComponent from "./components/HeaderComponent";
+import RadarComponent from "./components/RadarComponent";
+import MapComponent from "./components/MapComponent";
+
 
 class App extends Component {
   constructor(props) {
@@ -32,14 +34,8 @@ class App extends Component {
       });
     }
     
-    EventBus.on("logout", () => {
-      this.logOut();
-    });
   }
 
-  componentWillUnmount() {
-    EventBus.remove("logout");
-  }
 
   logOut() {
     AuthService.logout();
@@ -50,15 +46,13 @@ class App extends Component {
 
   render() {
     const { currentUser } = this.state;
+    const isLoggedIn  = (currentUser? true: false)
 
     return (
       <BrowserRouter>
       <div>
 
-        <HeaderComponent currentUser={this.state.currentUser} logOut={this.logOut}>
-        </HeaderComponent>
-        
-      
+        <HeaderComponent currentUser={currentUser} logOut={this.logOut} />
 
         <div>
           <Routes>
@@ -66,7 +60,21 @@ class App extends Component {
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<RegisterComponent />} />
-            <Route path="/profile" element={<Profile />} />
+
+            <Route path="/profile" 
+              element={
+                <Protected isLoggedIn={isLoggedIn}>
+                  <Profile />
+                </Protected>
+            } />
+
+            <Route path="/radar" 
+              element={
+                <Protected isLoggedIn={isLoggedIn}>
+                  <RadarComponent />
+                </Protected>
+            } />
+
           </Routes>
         </div>
 

@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Navigate } from "react-router-dom";
-import AuthService from "../services/auth-service";
 import {Link} from "react-router-dom"
 import "../styles/HeaderComponentStyle.css"
 
@@ -17,12 +15,11 @@ export default class HeaderComponent extends Component {
 
   render() {
 
-    const { currentUser } = this.state;
+    const { currentUser } = this.props;
 
     return (
 
         <div className="header-container">
-
 
             <Link to={"/home"} className="link">
                 Home
@@ -33,11 +30,14 @@ export default class HeaderComponent extends Component {
             {currentUser ? (
             <div >
                 <Link to={"/profile"} className="link">
-                  {currentUser.username}
+                  {currentUser.login}
                 </Link>
                 <a href="/login" onClick={this.props.logOut} className="link">
                   LogOut
                 </a>
+                <Link to={"/radar"} className="link">
+                  Radar
+                </Link>
             </div>
           ) : (
             <div >

@@ -107,6 +107,8 @@ class Login extends Component {
             message: "Авторизация прошла успешно!",
             successful: true
           });
+          this.props.router.navigate("/profile");
+          window.location.reload();
         },
         error => {
           const resMessage =

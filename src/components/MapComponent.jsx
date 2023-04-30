@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import "mapbox-gl/dist/mapbox-gl.css"
 
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiZmxhazM0IiwiYSI6ImNsZ2pkZ2Q2aTAyaGMzbXFzZGlhd3RiYjUifQ.TO3uwKnqXIivm25EPPdaFQ';
 
 
@@ -13,7 +14,6 @@ class MapComponent extends React.PureComponent {
             lng: 37.629204,
             lat: 55.753732,
             zoom: 9
-          
         }
 
         this.mapContainer = React.createRef();
@@ -48,9 +48,7 @@ class MapComponent extends React.PureComponent {
   
     render() { 
         return (  
-            <div>
-                <div ref={this.mapContainer} className="map-container" />
-            </div>    
+            <div ref={this.mapContainer} className="map-container"/>
         );
     }
 

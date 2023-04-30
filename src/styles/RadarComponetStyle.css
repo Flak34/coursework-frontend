@@ -1,0 +1,18 @@
+.main-container {
+    position: fixed;
+    display: flex;
+    margin-top: 80px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+.drive-container {
+    flex: 2;
+}
+
+.map-container {
+    flex: 3;
+    height: 100%;
+}
