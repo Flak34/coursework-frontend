@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import AuthService from "../services/auth-service";
 import "../styles/RegisterLoginComponentsStyle.css"
 
-import { withRouter } from '../common/with-router';
+import {withRouter} from "../common/with-router"
 
 
 
@@ -107,8 +107,10 @@ class Login extends Component {
             message: "Авторизация прошла успешно!",
             successful: true
           });
+
           this.props.router.navigate("/profile");
           window.location.reload();
+          
         },
         error => {
           const resMessage =
@@ -134,7 +136,7 @@ class Login extends Component {
       <div className="form-container">
 
         {!this.state.successful && (
-          // <div className="form-container">
+
           <form className="form">
             <h1>Вход в аккаунт</h1>
 
@@ -162,14 +164,15 @@ class Login extends Component {
             </div>
             <button onClick={this.handleLogin} className="submit-button" type="submit">Login</button>
           </form>
-        // </div>
+
         )}
  
-        {this.state.message && (
-          <div className={(this.state.successful ? ('message'): ('errorMessage'))} >
+        {this.state.message && !this.state.successful && (
+          <div className="errorMessage" >
             {this.state.message}
           </div>
         )}
+
       </div>
     );
   }

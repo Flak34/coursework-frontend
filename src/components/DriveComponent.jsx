@@ -12,9 +12,30 @@ export default class DriveComponent extends Component {
 
 
   render() {
+
+    
+
     return (
-      <div>
-        
+      <div style={{overflowY: "auto"}}>
+
+        {!this.props.currentCar &&
+          <h1>Выберите автомобиль для поездки</h1>
+        }
+
+
+
+        {this.props.currentCar &&
+
+          <div>
+            <h1>Текущая поездка</h1>
+            <div>Автомобиль: {this.props.currentCar.model}</div>
+            <div></div>
+          </div>
+          
+        }
+
+
+
       </div>
     );
   }

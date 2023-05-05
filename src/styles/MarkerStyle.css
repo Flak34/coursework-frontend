@@ -1,0 +1,9 @@
+.marker {
+    display: block;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    background-image: url('../car_icons/icon1.png');
+    width: 64px;
+    height: 64px;
+}

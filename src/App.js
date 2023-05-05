@@ -12,7 +12,6 @@ import Profile from "./components/ProfileComponent";
 import Protected from "./common/Protected";
 import HeaderComponent from "./components/HeaderComponent";
 import RadarComponent from "./components/RadarComponent";
-import MapComponent from "./components/MapComponent";
 
 
 class App extends Component {

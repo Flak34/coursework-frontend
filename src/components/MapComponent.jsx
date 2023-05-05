@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import "mapbox-gl/dist/mapbox-gl.css"
-
+import Marker from "../common/Marker";
+import CarsharingService from "../services/carsharing-service";
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZmxhazM0IiwiYSI6ImNsZ2pkZ2Q2aTAyaGMzbXFzZGlhd3RiYjUifQ.TO3uwKnqXIivm25EPPdaFQ';
 
@@ -38,20 +39,21 @@ class MapComponent extends React.PureComponent {
             showAccuracyCircle: false
         }));
 
-        const marker = new mapboxgl.Marker()
-        .setLngLat([37.629204, 55.753732])
-        .setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>")) // add popup
-        .addTo(map);
-
+        CarsharingService.getFreeCars().then((response) => {
+            response.data.map(
+                car => {
+                    Marker(car, this.props.setCurrentCar).addTo(map);
+            })
+        })
     }
 
   
     render() { 
         return (  
-            <div ref={this.mapContainer} className="map-container"/>
+            <div ref={this.mapContainer} style={{height: "100%"}}/>
         );
     }
 
 }
  
-export default MapComponent;
+export default React.memo(MapComponent);
