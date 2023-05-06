@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "../styles/DriveComponentStyle.css"
 
 export default class DriveComponent extends Component {
   constructor(props) {
@@ -8,15 +8,19 @@ export default class DriveComponent extends Component {
     this.state = {
     
     };
+
+    this.handleStartDrive = this.handleStartDrive.bind(this);
+  }
+
+
+  handleStartDrive() {
+    this.props.startDrive();
   }
 
 
   render() {
-
-    
-
     return (
-      <div style={{overflowY: "auto"}}>
+      <div style={{overflowY: "auto"}} className="drive-container">
 
         {!this.props.currentCar &&
           <h1>Выберите автомобиль для поездки</h1>
@@ -27,11 +31,23 @@ export default class DriveComponent extends Component {
         {this.props.currentCar &&
 
           <div>
-            <h1>Текущая поездка</h1>
-            <div>Автомобиль: {this.props.currentCar.model}</div>
-            <div></div>
+            <h1>Автомобиль: {this.props.currentCar.model}</h1>
+            {!this.props.currentDrive &&
+              <button onClick={this.handleStartDrive}>Начать поездку</button>
+            }
           </div>
           
+        }
+
+        {!this.props.currentDrive &&
+          <div>Current drive</div>
+        }
+
+        {this.props.currentDrive && 
+          <div>
+            <div>Drive start: {this.props.currentDrive.start}</div>
+          </div>
+
         }
 
 

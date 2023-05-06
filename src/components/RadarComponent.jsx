@@ -18,18 +18,29 @@ class RadarComponent extends Component {
     };
 
     this.setCurrentCar = this.setCurrentCar.bind(this);
+    this.startDrive = this.startDrive.bind(this);
   }
 
   componentDidMount() {
+    CarsharingService.getCurrentDrive().then(response => {
+      let driveStarted = (response.data ? true : false);
+      this.setState({currentDrive: response.data, currentCar: response.data.car, driveStarted: driveStarted});
+    })
   }
 
   setCurrentCar(car) {
     this.setState({currentCar: car});
   }
 
-  setCurrentDrive(drive) {
-    this.setState({currentDrive: drive});
+  startDrive() {
+    CarsharingService.startDrive(this.state.currentCar.id).then( response => {
+      this.setState({currentDrive: response.data, driveStarted: true});
+    },
+    error => {
+      console.log(error);
+    })
   }
+
 
   render() {
 
@@ -37,15 +48,27 @@ class RadarComponent extends Component {
       <div className="main-container">
 
         <div className="drive-container">
-          <DriveComponent currentCar={this.state.currentCar}></DriveComponent>
+          <DriveComponent 
+          currentDrive={this.state.currentDrive}
+          startDrive={this.startDrive}
+          currentCar={this.state.currentCar}/>
         </div>
 
         
         <div className="map-container">
-          
-          <MapComponent 
-          setCurrentCar={this.setCurrentCar}/>
+          {this.state.driveStarted && 
+            <MapComponent 
+            driveStarted={true}
+            currentCar={this.state.currentCar}
+            setCurrentCar={this.setCurrentCar}/>
+          }
 
+          {!this.state.driveStarted && 
+            <MapComponent 
+            driveStarted={false}
+            currentCar={this.state.currentCar}
+            setCurrentCar={this.setCurrentCar}/>
+          }
         </div>
 
       </div>

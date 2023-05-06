@@ -12,8 +12,8 @@ const Marker = (car, setCurrentCar) => {
     el.car = car;
     el.setCurrentCar = setCurrentCar;
     el.addEventListener('click', handleClick);
-
-    let marker = new mapboxgl.Marker({element: el, draggable: true}).setLngLat([car.lng, car.lat]);
+    
+    let marker = new mapboxgl.Marker({element: el}).setLngLat([car.lng, car.lat]);
     return marker;
 };
 

@@ -39,14 +39,23 @@ class MapComponent extends React.PureComponent {
             showAccuracyCircle: false
         }));
 
-        CarsharingService.getFreeCars().then((response) => {
-            response.data.map(
-                car => {
-                    Marker(car, this.props.setCurrentCar).addTo(map);
-            })
-        })
-    }
 
+        if(!this.props.driveStarted) {
+            CarsharingService.getFreeCars().then((response) => {
+                response.data.map(
+                    car => {
+                        let marker = Marker(car, this.props.setCurrentCar);
+                        marker.addTo(map);
+                })
+            })
+        }
+        else {
+            let marker = Marker(this.props.currentCar, this.props.setCurrentCar);
+            this.markers.push(marker);
+            marker.addTo(map);
+        }
+        
+    }
   
     render() { 
         return (  

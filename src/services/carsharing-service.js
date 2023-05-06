@@ -11,10 +11,16 @@ class CarsharingService {
   }
  
   getFreeCars() {
-    return axios.get(API_URL + "cars", {headers: authHeader()})
+    return axios.get(API_URL + "cars", {headers: authHeader()});
   }
 
+  getCurrentDrive() {
+    return axios.get(API_URL + "drive", {headers: authHeader()});
+  }
 
+  startDrive(carId) {
+    return axios.post(API_URL + "drives/start", {carId: carId}, {headers: authHeader()})
+  }
 
 }
 
