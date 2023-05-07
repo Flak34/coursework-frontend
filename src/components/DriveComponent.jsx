@@ -10,11 +10,16 @@ export default class DriveComponent extends Component {
     };
 
     this.handleStartDrive = this.handleStartDrive.bind(this);
+    this.handleFinishDrive = this.handleFinishDrive.bind(this);
   }
 
 
   handleStartDrive() {
     this.props.startDrive();
+  }
+
+  handleFinishDrive() {
+    this.props.finishDrive();
   }
 
 
@@ -27,27 +32,21 @@ export default class DriveComponent extends Component {
         }
 
 
-
         {this.props.currentCar &&
-
           <div>
             <h1>Автомобиль: {this.props.currentCar.model}</h1>
             {!this.props.currentDrive &&
               <button onClick={this.handleStartDrive}>Начать поездку</button>
             }
           </div>
-          
         }
 
-        {!this.props.currentDrive &&
-          <div>Current drive</div>
-        }
 
         {this.props.currentDrive && 
           <div>
             <div>Drive start: {this.props.currentDrive.start}</div>
+            <button onClick={this.handleFinishDrive}>Завершить поездку</button>
           </div>
-
         }
 
 

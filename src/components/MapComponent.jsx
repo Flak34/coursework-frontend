@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import "mapbox-gl/dist/mapbox-gl.css"
 import Marker from "../common/Marker";
+import ActiveMarker from "../common/ActiveMarker";
 import CarsharingService from "../services/carsharing-service";
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZmxhazM0IiwiYSI6ImNsZ2pkZ2Q2aTAyaGMzbXFzZGlhd3RiYjUifQ.TO3uwKnqXIivm25EPPdaFQ';
@@ -50,8 +51,7 @@ class MapComponent extends React.PureComponent {
             })
         }
         else {
-            let marker = Marker(this.props.currentCar, this.props.setCurrentCar);
-            this.markers.push(marker);
+            let marker = ActiveMarker(this.props.currentCar, this.props.moveCar);
             marker.addTo(map);
         }
         

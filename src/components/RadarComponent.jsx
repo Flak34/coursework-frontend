@@ -13,18 +13,18 @@ class RadarComponent extends Component {
     this.state = {
       cars: [],
       currentCar: null,
-      driveStarted: false,
       currentDrive: null
     };
 
     this.setCurrentCar = this.setCurrentCar.bind(this);
     this.startDrive = this.startDrive.bind(this);
+    this.finishDrive = this.finishDrive.bind(this);
+    this.moveCar = this.moveCar.bind(this);
   }
 
   componentDidMount() {
     CarsharingService.getCurrentDrive().then(response => {
-      let driveStarted = (response.data ? true : false);
-      this.setState({currentDrive: response.data, currentCar: response.data.car, driveStarted: driveStarted});
+      this.setState({currentDrive: response.data, currentCar: response.data.car});
     })
   }
 
@@ -34,13 +34,34 @@ class RadarComponent extends Component {
 
   startDrive() {
     CarsharingService.startDrive(this.state.currentCar.id).then( response => {
-      this.setState({currentDrive: response.data, driveStarted: true});
+      this.setState({currentDrive: response.data});
     },
     error => {
       console.log(error);
     })
   }
 
+  finishDrive() {
+    CarsharingService.finishDrive(this.state.currentDrive.id).then(response => {
+      this.setState({currentDrive: null, currentCar: null});
+    },
+    error => {
+      console.log(error);
+    })
+  }
+
+  moveCar(marker) {
+    const {lng, lat} = marker.getLngLat();
+    const carId = marker.getElement().car.id;
+    CarsharingService.moveCar(lng, lat, carId).then(response => {
+      marker.getElement().car = response.data;
+      console.log(response.data);
+    },
+    error => {
+      console.log(error.data);
+      marker.setLngLat(marker.getElement().car.lng, marker.getElement().car.lat)
+    })
+  }
 
   render() {
 
@@ -51,22 +72,23 @@ class RadarComponent extends Component {
           <DriveComponent 
           currentDrive={this.state.currentDrive}
           startDrive={this.startDrive}
-          currentCar={this.state.currentCar}/>
+          currentCar={this.state.currentCar}
+          finishDrive={this.finishDrive}/>
         </div>
 
         
         <div className="map-container">
-          {this.state.driveStarted && 
+          {this.state.currentDrive && 
             <MapComponent 
             driveStarted={true}
             currentCar={this.state.currentCar}
-            setCurrentCar={this.setCurrentCar}/>
+            // setCurrentCar={this.setCurrentCar}
+            moveCar={this.moveCar}/>
           }
 
-          {!this.state.driveStarted && 
+          {!this.state.currentDrive && 
             <MapComponent 
             driveStarted={false}
-            currentCar={this.state.currentCar}
             setCurrentCar={this.setCurrentCar}/>
           }
         </div>

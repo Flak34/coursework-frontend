@@ -22,6 +22,16 @@ class CarsharingService {
     return axios.post(API_URL + "drives/start", {carId: carId}, {headers: authHeader()})
   }
 
+  finishDrive(driveId) {
+    return axios.post(API_URL + "drives/finish", {driveId: driveId}, {headers: authHeader()})
+  }
+
+  moveCar(newLng, newLat, carId) {
+    return axios.post(API_URL + "cars/move", {newLng: newLng, newLat: newLat, carId: carId}, {headers: authHeader()})
+  }
+
+  
+
 }
 
 export default new CarsharingService();
