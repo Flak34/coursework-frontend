@@ -30,7 +30,9 @@ class CarsharingService {
     return axios.post(API_URL + "cars/move", {newLng: newLng, newLat: newLat, carId: carId}, {headers: authHeader()})
   }
 
-  
+  getZone(zoneId) {
+    return axios.get(API_URL + "/zones/zone?zoneId=" + zoneId, {headers: authHeader()});
+  }
 
 }
 

@@ -13,7 +13,8 @@ class RadarComponent extends Component {
     this.state = {
       cars: [],
       currentCar: null,
-      currentDrive: null
+      currentDrive: null,
+      zoneId: 1
     };
 
     this.setCurrentCar = this.setCurrentCar.bind(this);
@@ -47,6 +48,7 @@ class RadarComponent extends Component {
     },
     error => {
       console.log(error);
+      alert(error.response.data);
     })
   }
 
@@ -83,13 +85,15 @@ class RadarComponent extends Component {
             driveStarted={true}
             currentCar={this.state.currentCar}
             // setCurrentCar={this.setCurrentCar}
-            moveCar={this.moveCar}/>
+            moveCar={this.moveCar}
+            zoneId={this.state.zoneId}/>
           }
 
           {!this.state.currentDrive && 
             <MapComponent 
             driveStarted={false}
-            setCurrentCar={this.setCurrentCar}/>
+            setCurrentCar={this.setCurrentCar}
+            zoneId={this.state.zoneId}/>
           }
         </div>
 

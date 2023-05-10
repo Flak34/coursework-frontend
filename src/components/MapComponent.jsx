@@ -40,6 +40,47 @@ class MapComponent extends React.PureComponent {
             showAccuracyCircle: false
         }));
 
+        CarsharingService.getZone(this.props.zoneId).then((response) => {
+            map.on('load', () => {
+                // Add a data source containing GeoJSON data.
+                map.addSource('maine', {
+                'type': 'geojson',
+                'data': {
+                'type': 'Feature',
+                'geometry': {
+                'type': 'Polygon',
+                // These coordinates outline Maine.
+                'coordinates': [
+                    response.data.coordinates
+                ]}}});
+                 
+                // Add a new layer to visualize the polygon.
+                map.addLayer({
+                'id': 'maine',
+                'type': 'fill',
+                'source': 'maine', // reference the data source
+                'layout': {},
+                'paint': {
+                'fill-color': '#0080ff', // blue color fill
+                'fill-opacity': 0.5
+                }
+                });
+                // Add a black outline around the polygon.
+                map.addLayer({
+                'id': 'outline',
+                'type': 'line',
+                'source': 'maine',
+                'layout': {},
+                'paint': {
+                'line-color': '#000',
+                'line-width': 3
+                }
+                });
+            });
+        })
+
+        
+
 
         if(!this.props.driveStarted) {
             CarsharingService.getFreeCars().then((response) => {
