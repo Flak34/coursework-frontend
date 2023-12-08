@@ -1,0 +1,92 @@
+.input {
+    width: 90%;
+    margin-top: 20px;
+    height: 30px;
+
+    display: block;
+    padding: 0.375rem 0.75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 80px;
+    background-color: rgb(9, 63, 2);
+    flex-wrap: wrap;
+}
+
+.form {
+    width: 30%;
+    background-color: rgb(37, 197, 211);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    padding-bottom: 30px;
+    border-radius: 30px;
+    height: fit-content;
+}
+
+.submit-button {
+    margin-top: 20px;
+    background-color: #040d52; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 20px;
+}
+
+.submit-button:hover {
+    cursor: pointer;
+}
+
+.inputMessage {
+    position: absolute;
+    top: 0;
+    color: red;
+    font-weight: 500;
+}
+
+.input-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-top: 20px;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 50px;
+    width: 100%;
+    position: fixed;
+    top: 100px;
+    text-align: center;
+}
+
+.message {
+    color: white;
+    font-size: 50px;
+    width: 100%;
+    position: fixed;
+    top: 100px;
+    text-align: center;
+}
