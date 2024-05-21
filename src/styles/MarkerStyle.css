@@ -1,0 +1,16 @@
+.marker {
+    display: block;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    background-image: url('../car_icons/icon1.png');
+    width: 60px;
+    height: 60px;
+    background-size: 100%;
+}
+
+.focused {
+    width: 90px;
+    height: 90px;
+    background-image: url('../car_icons/icon1-128.png');
+}

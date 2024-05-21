@@ -1,0 +1,43 @@
+.main-container {
+    position: fixed; 
+    display: flex;
+    margin-top: 80px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    overflow: hidden;
+
+    /* 
+    display: flex;
+    position: relative;
+    height: 100vh;
+    margin-top: 80px;
+    overflow-y: hidden; */
+}
+
+.drive-container {
+    flex: 2;
+    overflow: auto;
+}
+
+.drive-container::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f9f9fd;
+}
+
+.drive-container::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgb(37, 197, 211);
+}
+
+.drive-container::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  background-color: #f9f9fd;
+}
+
+.map-container {
+    flex: 3;
+    height: 100%;
+}
