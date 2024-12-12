@@ -1,70 +1,98 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Работа с Memaid в Github
+## GitGraph
+```mermaid
+gitGraph
+    commit id: "Создание репозитория системы бронирования"
+    branch develop
+    checkout develop
+    commit id: "Разработка интерфейса бронирования"
+    commit id: "Добавление функции регистрации пользователей"
+    branch feature/calendar
+    checkout feature/calendar
+    commit id: "Реализация календаря доступности площадок"
+    commit id: "Оптимизация синхронизации календаря"
+    checkout develop
+    merge feature/calendar tag: "Календарь завершён"
+    commit id: "Интеграция календаря с формой бронирования"
+    branch feature/payment
+    checkout feature/payment
+    commit id: "Добавление модуля обработки платежей"
+    commit id: "Настройка интеграции с платёжной системой"
+    checkout develop
+    merge feature/payment tag: "Обработка платежей завершена"
+    branch feature/notifications
+    checkout feature/notifications
+    commit id: "Реализация системы уведомлений для пользователей"
+    commit id: "Добавление уведомлений для операционного персонала"
+    checkout develop
+    merge feature/notifications tag: "Уведомления завершены"
+    checkout main
+    merge develop tag: "Релиз версии 1.0"
+    commit id: "Релиз v1.0: функционал бронирования, оплаты и уведомлений"
+```
+### Пояснения 
+Первым на рассмотрении будет GitGraph. С его помощью можно отобразить базовый процесс работы с разными ветками при разработке системы. Такой граф является более наглядным в сравнение с ручным разбором истории коммитов.
+Пример графа для системы бронияровая представлен выше
+## Квадрант-граф
+``` mermaid
+quadrantChart
+    title Приоритеты функционала системы
+    x-axis "Низкий приоритет" --> "Высокий приоритет"
+    y-axis "Низкая сложность" --> "Высокая сложность"
+    quadrant-1 "Срочно реализовать"
+    quadrant-2 "Запланировать в ближайшее время"
+    quadrant-3 "Возможно, стоит отказаться"
+    quadrant-4 "Требует тщательного анализа"
+    "Управление бронированиями": [0.7, 0.8]
+    "Календарь доступности": [0.89, 0.23]
+    "Интеграция с платежным шлюзом": [0.57, 0.69]
+    "Симстема уведомлений": [0.7, 0.34]
+    "Статистика системы": [0.2, 0.11]
+    "Генерация отчетов": [0.2, 0.55]
+    "Чат поддержки": [0.3, 0.85]
+    "Обратная связь": [0.1, 0.75]
+    "Добавление площадки в избранное": [0.33, 0.33]
+  
+```
+### Пояснения 
+Следующим на рассмотрении идет Квадрант-граф. Он позволяет классифицировать задачи по разным критериям, например, высокая/низкая сложность и высокий/низкий приоритет. Данный подход удобен, когда в момент разработки возникает несколько задач и команда не сразу понимает за что браться. Данный граф помогает оценить каждую задачу и сфокусировать внимание на самых важных. Пример такого графа представлен выше.
+## User Journey Diagram
+``` mermaid
+journey
+    title Путешествие клиента
+    section Бронирование площадки
+      Выбор даты и времени: 5: Клиент
+      Проверка доступности: 3: Система
+      Подтверждение бронирования: 4: Клиент
+    section Оплата
+      Выбор способа оплаты: 4: Клиент
+      Проведение платежа: 3: Платежный шлюз
+      Подтверждение оплаты: 5: Система
+    section Уведомления
+      Уведомление о бронировании: 5: Клиент
+      Уведомление для администратора: 4: Администратор
+  
+```
+### Пояснения
+Третьим по очереди, но не по значению можно выделить User Journey Diagram. Данная диаграмма позволяет оценить пользовательский опыт при взаимодействии с каждым элементом нашей системы и выявить слабые места. 
+## Mind Map
+``` mermaid
+mindmap
+  root((Система бронирования))
+    Клиенты
+      Забронировать площадку
+      Оплатить онлайн
+      Получить уведомления
+    Администраторы
+      Управление бронированиями
+      Управление площадками
+      Просмотр отчетов
+    Система
+      Проверка доступности
+      Генерация счетов
+      Интеграция с платежными шлюзами
+      Отправка уведомлений
+```
+### Пояснения
+И наконец последняя диаграмма – Mind Map. Данные диаграммы можно использовать для визуализации ключевых аспектов клиент-серверной системы, которые можно сгруппировать по ролям. 
